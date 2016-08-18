@@ -1,0 +1,145 @@
+
+
+ Layer Prox: a deepdive in circulating Deep packet inspection and censorship surveillance 
+			by:Filip kalebo 
+					(flipchan(at)riseup.net) 
+
+
+Introduction: a couple of months ago a late night, i was sitting in front of my 
+computer exploring the ipv4 net, and suddenly this idea pops in to my head: what if i 
+could build a proxy that will simulate a normal "webuser" traffic and then use that to 
+mask my own traffic and make the person watching my traffic belive that i am visiting 
+site X when im really visiting site Y. So i looked around and of course you could just 
+go and run tunneling service like a openvpn, tor or i2p or something simular. But these 
+projects are not like my idea is, they are very different. So started to look around on 
+the net and found something that seemed okey "CensorSpoofer: Asymmetric Communication 
+using IP Spoofing for" i read the white paper but did not find anycode for it, i also 
+emailed the programmers of this but didnt get any replies so that was probably more of 
+an idea and not any code or working system. So no luck there so i thougt i look in to 
+what tor does to avoid mitm traffic detection and that got me to thing that can make 
+tor traffic look like ssh traffic etc, the so called "Format-Transforming Encryption". 
+I had finaly found my holygrail and was goin to recode it and add a http regex to it.i 
+recoded some http webbrowsing data and coded a small script that would send a package 
+with some of the data i have recorded in it and send the real stuff in fte, this didnt 
+really work as i have hoped and after alot of errors, midnights scrathing my head, 
+debugging code.. i emailed the creator of Format-Transforming Encryption(kevin p. dyer 
+great dude) and told him about my idea and asked him if he have heard of anything 
+simular. He responded and told me about "Marionette" which will use fte to make the 
+data look like other type of data aka Protocol Misidentification. I looked at 
+marionette and started hacking on it and that became LayerProx. 
+
+
+What is layerProx and what have you done with marionette?: this is a rebuild of marionette where i have made the traffic look like real "user browser" traffic instead of just performing Protocol 
+Misidentification, the person who is running an mitm attack against us can literatly go 
+to the links where are generating and they are real so we are not just generating 100% 
+bogus data we are actually generating real webtraffic that what i consider to be from a 
+normal browsing session. i have also added strong encryption. LayerProx is also the 
+only and first proxy(/simular system what i know of) that use PGP in its encryption. 
+
+
+
+Encryption: the big problem with marionette is that it was not useing any strong 
+encryption, it use more of an encoding so if anyone where to exploit the fte traffic 
+with our real data in it and then downloading fte and decode it we are not so safe 
+anymore, i tackled this with adding the strongest working(and have python bindings) 
+encryption out there Scrypt and PGP. the traffic get encrypted in multiple layers 
+therefore i named this project LayerProx, the encryption looks like this: 
+1. fte -- gets encoded with fte 
+2. scrypt -- gets encrypted with scrypt and our scrypt password 
+we have configured in the marionette.conf 
+3. pgp -- the data gets encrypted with the 
+client/servers pgp fingerprint 
+4. scrypt -- and at last an extra layer of scrypt is added 
+
+you could play around with this and add 2 different password to scrypt so one for 
+number 2 and one for number 4. so to decrypt this they would need to decode the fte, 
+break/crack scrypt, and then crack the pgp private key this would take along time and i 
+added pgp to the mix to make it pretty much impossible to crack it in something even 
+close to realtime, so even if they break scrypt they still have another layer of pgp to 
+go through so i would consider the data safe. So pgp has been around since the 90's and 
+its being used activly today in mostly encrypting emails. The length of pgp keys can 
+easily be modified, if you download gpg for your linux box the max length is around 
+4096-8192 but mostly 4096, there is alot of tutorials about how to modify the source 
+code to generate bigger keys for you and gpg is opensource so pgp keys can easily be 
+made bigger then 4096. i have read that there is keys servers that accept up to 16k pgp 
+keys. 
+
+
+
+The generation of bogus data we are sending and other fun stuff: 
+I started by doing some mitm research of how an attack is made and what it can do, well 
+it can do pretty much everything to our data, the scariest thing is that it can modify 
+our data and have it sent back to us in real time. Its been all over the news how the 
+goverment is monitoring our traffic, in sweden they can do so legally(well atleast it 
+aint 1984 and thank god for encryption). So thought what would be funniest for me to 
+send to the mitm attacker and i thought why not send him to random tinyurl links 
+because he can pretty much end up anywhere, so i created a tinyurl format and got that 
+to work. Another thing i thought was really funny was to record the webtraffic of a 
+porn video and then play that and make the mitm attacker belive that i was watching 
+porn while in reality i was just looking at github and reading news. 
+Testing: i got on a network i know(i assumed) was being monitored heavily(sort of a private college with an open wifi 
+and it-dude that had to much freetime and knows how to use wireshark). So logged in to 
+their wifi and the it-guy was at his room so i assummed the he was online and i spoofed 
+a mac and started to simulate tinyurl links and then i simulated the porn data and was 
+having alot of fun. I later realized that i could use this for pentesting i simply 
+created a quick html page with a .js beef hook in it and got all the data to point to 
+that. So this can be used on a pentest aswell(assuming the target watches the 
+webtraffic).So now when i have created some fun data i can start by generating some 
+"normal" webdata and 
+make it look legit. i picked some pretty big sites that i visit more then once time a 
+week packetstorm, youtube, amazon, cxsecurity and ebay i noticed that all use some kind 
+of id that to the normal eye just looks like random characters that could easily be 
+generated: 
+
+https://packetstormsecurity.com/files/favorite/138347/ - randomize the 
+
+favorite id https://www.amazon.com/b/?_encoding=UTF8&node=6669702011 - we can randomize 
+
+the node id https://www.youtube.com/watch?v=H0g3Z77synI -- here we can randomize the 
+
+watch id https://cxsecurity.com/issue/WLB-2016080149 - randomize the CVE nr http://
+
+rtm.ebay.com/clk?RtmClk&u=1H4sIAAAAAAAAAEXMT2uDMBzG8bvgexBGd0vNLzF%2FLIThag8De2phD 
+IQSY1pDW5U0rmyvfhYGvTyXz5fnZT%2FZpJhOCfAEixWIFYNku9snBAOPIz%2BpLoSxXqXp%2FX5f2kb%
+2FLM1wTV24pmsX3K%2Ft0cYM qPTu26L3y2RR0Z%2Fs5YY%2BB39p0brzQz%
+2BcvB47VFkdOuvR1vYz62A6VOwlJhhhWqEUBHDJWUaogLdD8OdR%2B%2But VgvC%
+2FTgejGsXtGSctpRk2GYN5lJCbnPL2TH%2Fj9yzItrwR2WONM8aIYwB9vq4vbm2VnGkB4Xnda0qi4%
+2Fqq9wU1S6O 
+mlZBLrIckzhyswkmiZBYcGCCQiaBzeDPCuLoD0z0BGU6AQAA&ch=3&g=93b72e521560a624b0e5b7bdfff9fa8d&aii=7 
+582780761573148152&lid=1974902&m=650405&pi=2057337%0A%09%09%09%09%09%09&%0A%09%09%09%09%
+09%09_ trksid=e100084.m1843 -- here we could just generate a long string that looks 
+
+like this almost all of these sites are on top100 websites list http://www.alexa.com/
+topsites
+almost all of these sites are on top100 websites list 
+http://www.alexa.com/topsites 
+http://mostpopularwebsites.net/ 
+http://
+toolbar.netcraft.com/stats/topsites 
+
+so basicly we could take whatever website we wanted 
+from here and then find a syntax on the site we could easily generate like the once i 
+have listed above. i have now created amazon.mar cxsecurity.mar packetstorm.mar 
+tinyurl.mar ebay.mar youtube.mar and all can be used to generate links with the above 
+syntax. they all worked out great after a little time debugging them and i have a 
+recorded http traffic with all these formats in wireshark and it is in the same folder 
+as this whitepaper. okey to make the data look like it was coming from a proxy with a 
+webui so that the mitm can easily see what traffic we are generating i i have used this 
+syntax and made a GET request look like this: 
+GET /webbproxy/proxyurl=/http://rtm/ebay/com/clRtmClk&u=GoRkF01XStizXaBWJn/Q9DceZv3i1BAhp8PiiJnSdxdSKOfoY/WRnCDTuwNY HTTP/1.1 so 
+it will display the full url to the mitm attacker while our real data remains encrypted 
+and secure. what i ended up with: i ended up with an encrypted proxy that simulates a 
+"normal" user webbrowser traffic session and masks the real data so the idea i had 
+became reality. download all the code: 
+github.com/flipchan/LayerProx 
+a mirror will come up soon on my website: stackpointer.st / flipchan.se 
+
+any questions or simular email me my email is at the begining of this whitepaper 
+
+Further: there is some small bugs in LayerPox that will possible be fixed this week 
+maybe code a gui to and make it multiplatform 
+
+Special thanks to: Kevin P. dyer - without him this would have taken alot 
+
+longer Tor and duckduckgo community - keep doin great stuff 
+wingware aswell
