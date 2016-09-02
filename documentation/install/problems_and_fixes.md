@@ -17,8 +17,12 @@ if u need to cffi upgrade
 pip install cffi==1.7.0
 
 cant install regex2dfa?
-getting a ffi error? apt-get install libffi
+getting a ffi error? apt-get install libffi-dev
 getting a setup error(No module named setuptools_ext)?
 fix: let this tool upgrade python setuptools https://bitbucket.org/pypa/setuptools/downloads/ez_setup.py
+
+
+install on raspberrypi:
+apt-get install python-dev python-cffi libffi-dev
 
 

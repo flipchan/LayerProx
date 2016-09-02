@@ -6,7 +6,7 @@ a rebuild of marionette, encrypted proxy that simulates general webtraffic
 
 Currently works on/with:
 -----------------------
-Debian 7-8, kali 1-2, mac osx, windows 7
+Debian 7-8, kali 1-2, mac osx, windows 7, raspberry pi(raspbian jessie)
 and also works with proxychains so you can proxy applications through it
 
 
