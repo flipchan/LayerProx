@@ -1,6 +1,8 @@
 # LayerProx
 a rebuild of marionette, encrypted proxy that simulates general webtraffic
 
+Makes Real looking http packages
+
 **Provides strong end to end encryption with scrypt and PGP
 
 
