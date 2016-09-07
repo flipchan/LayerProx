@@ -1,0 +1,10 @@
+./bin/marionette_server --server_ip 0.0.0.0 --proxy_ip 0.0.0.0 --proxy_port 8081 --format http_active_probing --debug
+
+ ./bin/marionette_client --server_ip 0.0.0.0 --client_ip 127.0.0.1 --client_port 8079 --format http_active_probing --debug
+
+./bin/socksserver --local_port 8081
+
+
+ curl --socks4a 127.0.0.1:8079 example.com
+
+/usr/local/lib/python2.7/dist-packages/marionette_tg-0.0.3-py2.7.egg/marionette_tg/
