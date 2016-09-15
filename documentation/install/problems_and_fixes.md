@@ -1,6 +1,8 @@
 #problems and fixes
 
-
+#run -->
+apt-get install libgmp-dev libssl-dev libcurl4-openssl-dev libffi-dev python-dev python-cffi
+# <--
 
 Problems and fixes:
 cant connect remotely to it?
