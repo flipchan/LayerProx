@@ -3,6 +3,8 @@ a rebuild of marionette, encrypted proxy that simulates general webtraffic
 
 Makes Real looking http packages
 
+Stronger then a vpn, Smarter then a proxy
+
 **Provides strong end to end encryption with scrypt and PGP
 
 
