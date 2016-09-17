@@ -19,7 +19,9 @@ Version 1.5:
 -----------
 version 1.5 will be out soon here is the new features:
 connections go like this:
+```console
 you/user -> Tor -> LayerProx client -> LayerProx server
+```
 public LayerProx server will come up soon
 Securer/more crypto: advance/remove/replace scrypt 
 
