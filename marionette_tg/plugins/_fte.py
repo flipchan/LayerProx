@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+#maybe use -> AEAD CHACHA20-POLY1303
+#pgp sign and verify if the msg if not verify it will break
+#New crypto working on
+#extra
+#https://password-hashing.net/
+#https://paragonie.com/white-paper/2015-secure-php-data-encryption
+#https://paragonie.com/blog/2015/08/you-wouldnt-base64-a-password-cryptography-decoded
+#https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016
+
+
 import scrypt
 password = 'abc123uj'
 from base64 import b64encode, b64decode
@@ -86,6 +96,9 @@ def send(channel, marionette_state, input_args, blocking=True):
         ptxt = b64encode(ptxt) 
         ptxt = str(ptxt)
         ptxt = gpg.encrypt(ptxt, fingerprint)
+        #and sign it -->
+        ptxt = gpg.sign(ptxt)
+        #<-
     
         ptxt = str(ptxt)#1
         ptxt = b64encode(ptxt)#1
@@ -127,6 +140,12 @@ def recv(channel, marionette_state, input_args, blocking=True):
             ctxt = str(ctxt)
             ctxt = b64decode(ctxt)
             ctxt = str(ctxt)
+#verify that the data is legit else break -->
+
+            verify = gpg.verify(ctxt)
+            if not verify:
+                break
+            # <--
             ctxt = gpg.decrypt(ctxt, passphrase=gpgpassword)
             
             ctxt = str(ctxt)#1 
