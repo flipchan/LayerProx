@@ -24,7 +24,9 @@ you/user -> Tor -> LayerProx client -> LayerProx server
 ```
 public LayerProx server will come up soon
 Securer/more crypto: advance/remove/replace scrypt 
-
+have been added:
+stronger pgp code it nows signs and verifies the data and if the 
+data is not verified it will break
 
 install:
 --------
