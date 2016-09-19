@@ -1,0 +1,4 @@
+i have decieded to run the library https://github.com/stef/pysodium
+which is a python version of sodium
+so apt-get install libsodium-dev
+pip install pysodium
