@@ -30,10 +30,43 @@ have been added:
 stronger pgp code it nows signs and verifies the data and if the 
 data is not verified it will break
 
+
 install:
 --------
 python setup.py
 create a test user on the client and server and then make pgp keys for those two
+
+What is LayerProx?
+-----------------
+```console
+LayerProx is an advanced easy to reprogram proxy
+LayerProx operates like this:
+you set up a server and client machine you then proxy your 
+connection to the client machine useing a socks4a proxy. 
+The data then gets encrypted in multiple Layers to 
+provide strong end to end encryption. the encryption:
+
+orignal data --> fte cipher --> scrypt --> pgp --> chacha20_poly1305 --> fte cipher + the spoofed http data 
+
+so the data will look like we are just browseing the webb or looking 
+at cute cat pictures.
+LayerProx is the first project in the world which 
+implements "real http spoofing" 
+meaning that you can press on the generated http link and 
+actually get somewhere 
+
+Why i have added different layers of encryption is to make the 
+end to end encryption really strong 
+on alot of other applications they have just implemented one crypto
+so if the mitm-attacker gets our data he will only need to decrypt one layer
+But here i have added multiple layers so the attack will have to work 
+him/her self through multiple layers of encryption.
+
+i have(tried) to make it really easy for anyone to modify and rebuild this
+so if you feel like changeing the encryption to diffie hellman or something
+else it is easy to do so
+
+```
 
 start:
 ------
