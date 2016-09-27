@@ -2,7 +2,7 @@ echo '''
 Debian installer
 '''
 echo 'installing packages'
-apt-get install git libgmp-dev python-pip python-dev curl libcurl4-openssl-dev libssl-dev libffi libpth-dev libffi-dev python-cffi libsodium-dev
+apt-get install git libgmp-dev python-pip python-dev curl libcurl4-openssl-dev libssl-dev libpth-dev libffi-dev python-cffi libsodium-dev
 
 echo 'update'
 
