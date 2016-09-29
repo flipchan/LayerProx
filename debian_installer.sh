@@ -1,8 +1,9 @@
 echo '''
 Debian installer
+works on kali linux aswell ^^
 '''
 echo 'installing packages'
-apt-get install git  libgmp-dev python-pip python-dev curl libcurl4-openssl-dev libssl-dev libpth-dev libffi-dev python-cffi libsodium-dev
+apt-get install git python-gnupg  libgmp-dev python-pip python-dev curl libcurl4-openssl-dev libssl-dev libpth-dev libffi-dev python-cffi libsodium-dev
 
 echo 'update'
 
