@@ -6,7 +6,7 @@
 #->
 import sys
 import argparse
-from socks1 import *#import all the things from the file 
+from socks1 import *    #import all the socks from the file 
 from twisted.internet import reactor
 #from twisted.protocols import socks
 from twisted.python import log
@@ -21,7 +21,7 @@ def startthestuff(port, address):
     ip = address
     s5 = Socks5(address, port)
     s5.start()
-    return 'started socks5 on ' + str(address) + ' with port ' + str(port) 
+    return 'started socks5 on ' + str(address) + ' with port ' + str(port) #outputs? atm no..
     
 parser = argparse.ArgumentParser(
     description='SOCKS5 proxy server.')
