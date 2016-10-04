@@ -1,3 +1,7 @@
+i would recommend reading this:
+https://trac.torproject.org/projects/tor/wiki/doc/DnsResolver
+
+
 DNS OVER TOR ON DEBIAN
 
 original link -> https://web.archive.org/web/20141005152228/https://labs.nic.cz/page/993/dnssec-validation-over-tor--linux-/
