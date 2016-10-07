@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-import re
+import re #regex ,https://docs.python.org/2/library/re.html
 import sys
 import random
 import importlib

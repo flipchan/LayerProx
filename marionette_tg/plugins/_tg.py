@@ -11,7 +11,7 @@ from twisted.python import log
 import regex2dfa
 import fte.encoder
 import fte.bit_ops
-import re
+import re #regex ,https://docs.python.org/2/library/re.html
 
 import marionette_tg.record_layer
 
