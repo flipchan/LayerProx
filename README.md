@@ -1,7 +1,13 @@
 # LayerProx
 a rebuild of marionette, encrypted proxy that simulates general webtraffic
 
-Makes Real looking http packages
+Makes Real looking http packages, to avoid censorship why not make the 
+data look like social media or something other?
+
+LayerProx takes the orignal data and encrypts it and makes it look like
+http. Atm i have implemented ebay,amazon, facebook etc.. plugins to
+generate http requests that looks like you are just visiting a popular site
+while you are really looking at something else or useing another protocol
 
 Stronger then a vpn, Smarter then a proxy
 
