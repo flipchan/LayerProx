@@ -1,17 +1,17 @@
 # LayerProx
-a rebuild of marionette, encrypted proxy that simulates general webtraffic
+A rebuild of marionette, encrypted proxy that simulates general webtraffic.
 
 Makes Real looking http packages, to avoid censorship why not make the 
 data look like social media or something other?
 
 LayerProx takes the orignal data and encrypts it and makes it look like
-http. Atm i have implemented ebay,amazon, facebook etc.. plugins to
+http. At the moment I have implemented ebay, amazon, facebook etc.. plugins to
 generate http requests that looks like you are just visiting a popular site
 while you are really looking at something else or useing another protocol
 
-Stronger then a vpn, Smarter then a proxy
+Stronger than a vpn, Smarter than a proxy.
 
-**Provides strong end to end encryption with scrypt and PGP
+**Provides strong end to end encryption with scrypt and PGP**
 
 
 Currently works on/with:
@@ -88,7 +88,7 @@ start:
 ```
 0.0.0.0 to bind all interfaces 
 
-**See documenation folder for more documentation and how to guides
+**See documenation folder for more documentation and how to guides**
 
 
 LayerProx is a rebuild of https://github.com/marionette-tg/marionette
