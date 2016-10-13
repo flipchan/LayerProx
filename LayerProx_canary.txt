@@ -1,0 +1,32 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+LayerProx Warrant Canary
+
+LayerProx has not received any kind of National Security Letters or any court
+orders, or has been silenced by similar (il)legal and anti-democratic law
+tools.
+
+This statement is only valid when signed with fingerprint:
+3342 E7E5 165F D06C 9C24  895C 0717 F785 3F18 7A08
+
+The canary is updated at least quarterly. Last updated 2016-10-13
+
+CANARY | STATUS: OK | UPDATED 2016-10-13
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJX/82xAAoJEAcX94U/GHoIY7MP/1e8JgEogdPhANQEFI3PUszx
+E0Mg2LK3mGbl6oVJsZ59WHfE3KG6F2km40NATPXciRfX2XqrryNMSZd5N0xLHrD6
+oYq+4cstk9jyFqadBCBALI2Kq9d3c5k0FrCSUr2C0boJPqNz4cW0l3y+W7EDjY+m
+G96TLNQSkJSoGOMDFa84qti41NpP7kdvJ8PkLusbbSI+mbvMkl+avUVpwimMoZU6
+yMo+jCsJl3F/MnQmM+Tsxe7g/p64p5u6kijtQxWhfrKt5o4+rz1S7VoI3jCgmcf1
+f8V0+K4gLsvUoGYlDGwyRLeiCgoVg2+j213IYMyT7JiVg4J586h+0DzCbnbUyxAi
+loxHxuoU+sVsmd30kMYZ9Vu2p9LW6qynPpz6btm0jh1Y3N9zV8aC7AIkfbbkTWPT
+zcNhEbRsyoi9GhDIMhHkw72+QkTqIzOFXL8wpAHZVSWCgvuR0iNQ2ghhfm5+TN1Y
+le2nIyvgZnrE2OpnCr1HWqJHNPOXOU/GHkcyd3SoZW01RO094eqglHk8zx59Xmr/
+NxNwsLvudFajQRvbPMOwLN0GxpmsozaJHyq/lY/RaWkovjF3Dh4eRSbVynu7AQmR
+/GQLsbreGafnv6xGSiobO5wH0iZF8JWRWBU/2kgqSAS4gOZoYIP5t46y6B/qRG8M
+7B+FbH6N6IrenRNRkc7M
+=1O7G
+-----END PGP SIGNATURE-----

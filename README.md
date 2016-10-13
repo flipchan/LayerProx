@@ -11,6 +11,8 @@ while you are really looking at something else or useing another protocol
 
 Stronger than a vpn, Smarter than a proxy.
 
+LayerProx believes in Privacy so it comes with a Warrant Canary
+
 **Provides strong end to end encryption with scrypt and PGP**
 
 
