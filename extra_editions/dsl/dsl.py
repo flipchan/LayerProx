@@ -545,6 +545,9 @@ def load(party, format_name, mar_path):
             elif action.get_method() == 'number_send':
                 complementary_method = 'number_recv'
                 
+            elif action.get_method() == 'char_send':
+                complementary_method == 'char_recv'
+            
             complementary_party = 'client' if action.get_party(
             ) == 'server' else 'server'
 

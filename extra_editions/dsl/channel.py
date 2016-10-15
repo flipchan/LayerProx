@@ -50,7 +50,7 @@ class Channel(object):
             return self.buffer_
 
     def send(self, data):
-        if self.transport_protocol_ == 'tcp':
+        if self.transport_protocol_ == 'tcp': #tcp and udp support so if or 'udp' maybe
             self.protocol_.transport.write(data)
         else: #udp
             self.protocol_.transport.write(data, (self.remote_host, self.remote_port))
