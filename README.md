@@ -16,12 +16,15 @@ LayerProx believes in Privacy so it comes with a Warrant Canary
 **Provides strong end to end encryption with scrypt and PGP**
 
 ##Whats is uniq with layerprox?
-a normal obfusciation system makes the data look like random http data 
-this projects makes it look like the packages are goin to facebook, ebay etc
+a normal obfusciation system makes the data look like random http data. 
+this projects makes it look like the packages are goin to facebook, ebay etc.
 This project makes the packages look like user a visit site b. but user a is really visits site c
 By doing this we bypass deep package inspection systems(the data just looks like regular traffic) and the encryption
 protects against deep package injection
 
+encryption: pgp + aes-ctr + hmac
+
+each user has its uniq keys for the crypto with a expire date to help improve security
 
 Currently works on/with:
 -----------------------
@@ -30,21 +33,18 @@ and also works with proxychains so you can proxy applications through it
 
 
 
-Version 1.5:
+Version 2:
 -----------
-version 1.5 will be out soon here is the new features:
+version 2  will be out soon here is the new features:
 connections go like this:
 ```console
 you/user -> Tor -> LayerProx client -> LayerProx server
 ```
 public LayerProx server will come up soon
-Securer/more crypto: advance/remove/replace scrypt 
 
 
 have been added:
-stronger pgp code it nows signs and verifies the data and if the 
-data is not verified it will break
-
+crypto sys: pgp + aes-ctr + hmac
 
 install:
 --------
