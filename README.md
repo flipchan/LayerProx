@@ -15,6 +15,13 @@ LayerProx believes in Privacy so it comes with a Warrant Canary
 
 **Provides strong end to end encryption with scrypt and PGP**
 
+##Whats is uniq with layerprox?
+a normal obfusciation system makes the data look like random http data 
+this projects makes it look like the packages are goin to facebook, ebay etc
+This project makes the packages look like user a visit site b. but user a is really visits site c
+By doing this we bypass deep package inspection systems(the data just looks like regular traffic) and the encryption
+protects against deep package injection
+
 
 Currently works on/with:
 -----------------------
