@@ -31,21 +31,34 @@
           <h1>
 <a id="layerprox" class="anchor" href="#layerprox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LayerProx</h1>
 
-<p>a rebuild of marionette, encrypted proxy that simulates general webtraffic</p>
+<p>A rebuild of marionette, encrypted proxy that simulates general webtraffic.</p>
 
 <p>Makes Real looking http packages, to avoid censorship why not make the 
 data look like social media or something other?</p>
 
 <p>LayerProx takes the orignal data and encrypts it and makes it look like
-http. Atm i have implemented ebay,amazon, facebook etc.. plugins to
+http. At the moment I have implemented ebay, amazon, facebook etc.. plugins to
 generate http requests that looks like you are just visiting a popular site
 while you are really looking at something else or useing another protocol</p>
 
-<p>Stronger then a vpn, Smarter then a proxy</p>
+<p>Stronger than a vpn, Smarter than a proxy.</p>
 
-<p>I believe in strong crypto and privacy so layerprox comes with a Warrant Canary</p>
+<p>LayerProx believes in Privacy so it comes with a Warrant Canary</p>
 
-<p>**Provides strong end to end encryption with scrypt and PGP</p>
+<p><strong>Provides strong end to end encryption with PGP + AES-CTR + HMACSHA256</strong></p>
+
+<h2>
+<a id="whats-is-uniq-with-layerprox" class="anchor" href="#whats-is-uniq-with-layerprox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Whats is uniq with layerprox?</h2>
+
+<p>a normal obfusciation system makes the data look like random http data. 
+this projects makes it look like the packages are goin to facebook, ebay etc.
+This project makes the packages look like user a visit site b. but user a is really visits site c
+By doing this we bypass deep package inspection systems(the data just looks like regular traffic) and the encryption
+protects against deep package injection</p>
+
+<p>encryption: pgp + aes-ctr + hmac</p>
+
+<p>each user has its uniq keys for the crypto with a expire date to help improve security</p>
 
 <h2>
 <a id="currently-works-onwith" class="anchor" href="#currently-works-onwith" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Currently works on/with:</h2>
@@ -54,19 +67,17 @@ while you are really looking at something else or useing another protocol</p>
 and also works with proxychains so you can proxy applications through it</p>
 
 <h2>
-<a id="version-15" class="anchor" href="#version-15" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 1.5:</h2>
+<a id="version-2" class="anchor" href="#version-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 2:</h2>
 
-<p>version 1.5 will be out soon here is the new features:
+<p>version 2  will be out soon here is the new features:
 connections go like this:</p>
 
 <div class="highlight highlight-text-shell-session"><pre><span class="pl-mo">you/user -&gt; Tor -&gt; LayerProx client -&gt; LayerProx server</span></pre></div>
 
-<p>public LayerProx server will come up soon
-Securer/more crypto: advance/remove/replace scrypt </p>
+<p>public LayerProx server will come up soon</p>
 
 <p>have been added:
-stronger pgp code it nows signs and verifies the data and if the 
-data is not verified it will break</p>
+crypto sys: pgp + aes-ctr + hmac</p>
 
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>install:</h2>
@@ -119,9 +130,9 @@ create a test user on the client and server and then make pgp keys for those two
 
 <p>0.0.0.0 to bind all interfaces </p>
 
-<p>**See documenation folder for more documentation and how to guides</p>
+<p><strong>See documenation folder for more documentation and how to guides</strong></p>
 
-<p>LayerProx is a rebuild of <a href="https://github.com/marionette-tg/marionette">https://github.com/marionette-tg/marionette</a></p>
+<p>LayerProx is based on <a href="https://github.com/marionette-tg/marionette">https://github.com/marionette-tg/marionette</a></p>
         </section>
 
         <aside id="sidebar">
