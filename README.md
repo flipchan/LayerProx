@@ -13,7 +13,7 @@ Stronger than a vpn, Smarter than a proxy.
 
 LayerProx believes in Privacy so it comes with a Warrant Canary
 
-**Provides strong end to end encryption with scrypt and PGP**
+**Provides strong end to end encryption with PGP + AES-CTR + HMACSHA256**
 
 ##Whats is uniq with layerprox?
 a normal obfusciation system makes the data look like random http data. 
@@ -100,4 +100,4 @@ start:
 **See documenation folder for more documentation and how to guides**
 
 
-LayerProx is a rebuild of https://github.com/marionette-tg/marionette
+LayerProx is based on https://github.com/marionette-tg/marionette
