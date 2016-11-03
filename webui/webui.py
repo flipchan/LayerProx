@@ -1,7 +1,7 @@
 import flask
 import gnupg
 #https://gist.github.com/dustismo/6203329 / apt-get install libleveldb1 libleveldb-dev && pip install plyvel
-import plyvel #leveldb, very fast, you can even run the database in ram if you want
+#import plyvel #leveldb, very fast, you can even run the database in ram if you want
 #import MySQLdb #if you want mysql
 from os import urandom
 from base64 import b64decode
@@ -43,7 +43,15 @@ def firstpage():
 <title>LayerProx</title>
 </head>
 <body>
-<center>This is a </center>
+<h2>
+<center>This is a LayerProx server
+</h2>
+<br>
+<br>
+
+<t>get encrypted by goin to /getproxied</t>
+
+</center>
 </body>
 
     </html>
@@ -51,7 +59,7 @@ def firstpage():
     '''
 
 
-@lp.route('', methods=['GET'])
+#@lp.route('', methods=['GET'])
 
 
 @lp.route('/getproxied', methods=['GET', 'POST'])
@@ -145,3 +153,8 @@ def gen_day():
 #create table layerprox(
 #fingerprint hmac h1 h2 to_date 
 #)
+
+
+
+if __name__ == '__main__':
+    lp.run(debug=False,port=80) #host=0.0.0.0 
