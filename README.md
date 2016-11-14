@@ -1,6 +1,9 @@
 # LayerProx
 A rebuild of marionette, encrypted proxy that simulates general webtraffic.
 
+core idea of LayerProx project make the person that is intercepting our data for example a mitm belive that we are visiting 
+site "X" when we are on site "Y"
+
 Makes Real looking http packages, to avoid censorship why not make the 
 data look like social media or something other?
 
@@ -101,3 +104,6 @@ start:
 
 
 LayerProx is based on https://github.com/marionette-tg/marionette
+
+
+i recommend u check out the wiki for more info
