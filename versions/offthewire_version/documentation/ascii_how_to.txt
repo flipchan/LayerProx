@@ -1,0 +1,26 @@
+
+(fake site)                                
+  -
+  -
+  -----...incoming connection from isp
+zone1  .       
+/------.-----------------/                                                   .
+/      . dpi system/mitm /                                            (------.---------)
+/      .                 /                                            (LayerProx Server)
+/ (a<-...->e)            /                                            (------.---------)
+/      .                 /                                                   .
+/ (b<-...->f)            /                                         <-.....................->
+/      .                 /       a to h = clients
+/ (c<-...->g)            /
+/      .                 / 
+/ (d<-...->h)            /
+/------------------------/  
+
+
+/*
+in this senario we got 8 users useing the same isp to connect to the internet(a-h)
+lets say that f got a job that pays more and therefore can afford to pay more to get a faster connection 
+user f can then setup a proxy that listens (socks4a or socks5) so that user a,b,c,d,e,g,h doesnt even have to 
+have the layerprox client on there computers they can simply tell the browser to use f's proxy to bypass 
+the dpi-system. and proxy the connection out to the layerprox server and the mitm thinks that all connections is goin to the fake site 
+*/

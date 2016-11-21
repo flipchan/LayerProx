@@ -1,0 +1,49 @@
+		Obfusciating Torrent Traffic 
+
+			by Filip Kälebo
+				(aka flipchan)
+
+In sweden we have a company called "spridningskollen" which basicly represent 
+alot of media companies and they have what i understood it as somekind of 
+mass-Torrent-scanner of somekind, which is close-sourced. Anyhow these guys
+are real assholes they collect Torrent swarm data and then send out Threats by
+Letters demanding 2000kr(thats around 234 usd) for what they see as "stolen art".
+So if they see a swedish ip downloading a torrent with anything file that the 
+companies that they represent have created or has copyrighted they will contact
+the isp for that ip and get the address of the person who is torrenting down 
+the file and send that person a letter demanding 2000SEK or they will report
+and up in court. This is basicly dmca badguys blackmailing regular people in to
+giving them money or they will get go to court and open up a legal case against that person. 
+Anyhow i have found a way around this useing my latest project called LayerProx.
+Link: github.com/flipchan/LayerProx
+
+So the problem is kinda that we need to secure the torrent traffic.
+I think that they are connecting to torrent "swarms" and just collecting ips
+but if that where to end up in court they will need proof from the isp that the person 
+has been sending Bittorrent packets at that time to prove the legal case.
+
+The way i solved this is that i wrote a socks5 support module to LayerProx that supports udp
+so i can proxy Bittorrent traffic i then bought a vps and put up that as a tor relay and i 
+have removed client ip logging from the LayerProx server so that you cant really tell 
+if there is someone just useing tor that send packets from the server or if someone is 
+downloading a torrent. So if Spridningskollen where to see the ip of my tor relay they
+cant trace it back to the client. They can ofc trace it back to me because i have my nick
+on the server (https://atlas.torproject.org/#details/AB8EE34C5CF3B6802DD1F4021FF015A463DF4572)
+anyhow this would probelly not be enough to hold a case for against someone in court. Because there
+is no proof that just that person where useing it due to the no ip loggging part.
+
+The packets goin from the LayerProx client to the LayerProx server is being obfuscated to 
+look like regular http packets for example i have implemented ebay format so that it will look
+like someone is just useing ebay to look at products and so on. So the packets are encrypted and then 
+obfuscated to look like regular http browseing data. The data just looks like a person is looking at
+social media and so on. 
+
+Why obfuscate/encrypt torrent traffic:
+if this gets big there is a chance that the isp will block or atleast record all Bittorrent traffic.
+And Torrents are used by alot of good company to distribute news and media of all kinds. So the worst
+scenario is that the isp's block all torrent traffic. So encrypt like its 1984:) 
+
+Special thanks to:
+Kevin p dyer
+2600
+swedish and global infosec hacking community

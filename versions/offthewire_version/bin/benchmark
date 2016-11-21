@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import os
+import sys
+import time
+import httplib
+
+sys.path.append('.')
+
+import marionette_tg.conf
+
+expected_response = ''
+for x in range(2**18):
+    expected_response += '_' + str(x)
+
+def execute(cmd):
+    os.system(cmd)
+
+
+def exec_download():
+    client_listen_ip = marionette_tg.conf.get("client.client_ip")
+    conn = httplib.HTTPConnection(
+        client_listen_ip,
+        18079,
+        False,
+        timeout=60)
+
+    conn.request("GET", "/")
+    response = conn.getresponse()
+    actual_response = response.read()
+    conn.close()
+
+    assert actual_response == expected_response
+
+
+def startservers(format):
+    client_listen_ip = marionette_tg.conf.get("client.client_ip")
+    server_proxy_ip = marionette_tg.conf.get("server.proxy_ip")
+
+    execute("./bin/httpserver --local_port 18081 &")
+    time.sleep(3)
+    execute(
+        "./bin/marionette_server --proxy_ip %s --proxy_port 18081 --format %s &"
+        % (server_proxy_ip, format))
+    time.sleep(3)
+    execute(
+        "./bin/marionette_client --client_ip %s --client_port 18079 "
+        "--format %s &"%
+        (client_listen_ip, format))
+    time.sleep(3)
+
+
+def stopservers():
+    execute("pkill -9 -f marionette_client")
+    execute("pkill -9 -f marionette_server")
+    execute("pkill -9 -f httpserver")
+
+
+def dodownload_serial():
+    total = 0
+    trials = 100
+    for i in xrange(1, trials + 1):
+        start = time.time()
+        exec_download()
+        elapsed = time.time() - start
+        total += elapsed
+        mbps = ((len(expected_response)*i / total) / 2**20) * 8
+        print [i, elapsed, total / i, mbps]
+
+
+def main():
+    try:
+        format = sys.argv[1] if len(sys.argv) > 1 else 'dummy'
+        startservers(format)
+        dodownload_serial()
+        print '\t', format, '...', 'SUCCESS'
+    except Exception as e:
+        print '\t', format, '...', 'FAILED'
+    finally:
+        stopservers()
+
+if __name__ == '__main__':
+    main()

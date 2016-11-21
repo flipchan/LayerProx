@@ -1,0 +1,4 @@
+
+
+gen a 8192 gpg key
+https://github.com/isislovecruft/python-gnupg/blob/master/examples/make-8192-bit-key.py

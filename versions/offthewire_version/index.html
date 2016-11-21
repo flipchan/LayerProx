@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Layerprox by flipchan</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Layerprox</h1>
+        <h2>a rebuild of marionette, an encrypted traffic obfuscation proxy, simulates general webtraffic</h2>
+        <a href="https://github.com/flipchan/LayerProx" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="layerprox" class="anchor" href="#layerprox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LayerProx</h1>
+
+<p>A rebuild of marionette, encrypted proxy that simulates general webtraffic.</p>
+
+<p>Makes Real looking http packages, to avoid censorship why not make the 
+data look like social media or something other?</p>
+
+<p>LayerProx takes the orignal data and encrypts it and makes it look like
+http. At the moment I have implemented ebay, amazon, facebook etc.. plugins to
+generate http requests that looks like you are just visiting a popular site
+while you are really looking at something else or useing another protocol</p>
+
+<p>Stronger than a vpn, Smarter than a proxy.</p>
+
+<p>LayerProx believes in Privacy so it comes with a Warrant Canary</p>
+
+<p><strong>Provides strong end to end encryption with PGP + AES-CTR + HMACSHA256</strong></p>
+
+<h2>
+<a id="whats-is-uniq-with-layerprox" class="anchor" href="#whats-is-uniq-with-layerprox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Whats is uniq with layerprox?</h2>
+
+<p>a normal obfusciation system makes the data look like random http data. 
+this projects makes it look like the packages are goin to facebook, ebay etc.
+This project makes the packages look like user a visit site b. but user a is really visits site c
+By doing this we bypass deep package inspection systems(the data just looks like regular traffic) and the encryption
+protects against deep package injection</p>
+
+<p>encryption: pgp + aes-ctr + hmac</p>
+
+<p>each user has its uniq keys for the crypto with a expire date to help improve security</p>
+
+<h2>
+<a id="currently-works-onwith" class="anchor" href="#currently-works-onwith" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Currently works on/with:</h2>
+
+<p>Debian 7-8, kali 1-2, mac osx, windows 7, raspberry pi(raspbian jessie)
+and also works with proxychains so you can proxy applications through it</p>
+
+<h2>
+<a id="version-2" class="anchor" href="#version-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 2:</h2>
+
+<p>version 2  will be out soon here is the new features:
+connections go like this:</p>
+
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-mo">you/user -&gt; Tor -&gt; LayerProx client -&gt; LayerProx server</span></pre></div>
+
+<p>public LayerProx server will come up soon</p>
+
+<p>have been added:
+crypto sys: pgp + aes-ctr + hmac</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>install:</h2>
+
+<p>python setup.py
+create a test user on the client and server and then make pgp keys for those two</p>
+
+<h2>
+<a id="what-is-layerprox" class="anchor" href="#what-is-layerprox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is LayerProx?</h2>
+
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-mo">LayerProx is an advanced easy to reprogram proxy</span>
+<span class="pl-mo">LayerProx operates like this:</span>
+<span class="pl-mo">you set up a server and client machine you then proxy your </span>
+<span class="pl-mo">connection to the client machine useing a socks4a proxy. </span>
+<span class="pl-mo">The data then gets encrypted in multiple Layers to </span>
+<span class="pl-mo">provide strong end to end encryption. the encryption:</span>
+
+<span class="pl-mo">orignal data --&gt; fte cipher --&gt; scrypt --&gt; pgp --&gt; chacha20_poly1305 --&gt; fte cipher + the spoofed http data </span>
+
+<span class="pl-mo">so the data will look like we are just browseing the webb or looking </span>
+<span class="pl-mo">at cute cat pictures.</span>
+<span class="pl-mo">LayerProx is the first project in the world which </span>
+<span class="pl-mo">implements "real http spoofing" </span>
+<span class="pl-mo">meaning that you can press on the generated http link and </span>
+<span class="pl-mo">actually get somewhere </span>
+
+<span class="pl-mo">Why i have added different layers of encryption is to make the </span>
+<span class="pl-mo">end to end encryption really strong </span>
+<span class="pl-mo">on alot of other applications they have just implemented one crypto</span>
+<span class="pl-mo">so if the mitm-attacker gets our data he will only need to decrypt one layer</span>
+<span class="pl-mo">But here i have added multiple layers so the attack will have to work </span>
+<span class="pl-mo">him/her self through multiple layers of encryption.</span>
+
+<span class="pl-mo">i have(tried) to make it really easy for anyone to modify and rebuild this</span>
+<span class="pl-mo">so if you feel like changeing the encryption to diffie hellman or something</span>
+<span class="pl-mo">else it is easy to do so</span>
+</pre></div>
+
+<h2>
+<a id="start" class="anchor" href="#start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>start:</h2>
+
+<div class="highlight highlight-text-shell-session"><pre><span class="pl-mo">./bin/marionette_server --server_ip 0.0.0.0 --proxy_ip 0.0.0.0 --proxy_port 8081 --format custom/ebay --debug</span>
+
+<span class="pl-mo"> ./bin/marionette_client --server_ip 0.0.0.0 --client_ip 127.0.0.1 --client_port 8079 --format custom/ebay --debug</span>
+
+<span class="pl-mo">./bin/socksserver --local_port 8081</span>
+
+
+<span class="pl-mo"> curl --socks4a 127.0.0.1:8079 example.com</span></pre></div>
+
+<p>0.0.0.0 to bind all interfaces </p>
+
+<p><strong>See documenation folder for more documentation and how to guides</strong></p>
+
+<p>LayerProx is based on <a href="https://github.com/marionette-tg/marionette">https://github.com/marionette-tg/marionette</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/flipchan/LayerProx/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/flipchan/LayerProx/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/flipchan/LayerProx"></a> is maintained by <a href="https://github.com/flipchan">flipchan</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>

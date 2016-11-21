@@ -1,0 +1,11 @@
+you can easily use tor's torrify or usewithtor to proxy something through
+
+proxychains:
+we can use proxychains to proxy irc programs like irssi through it
+vim in to /etc/proxychains.conf
+and add the line socks4 127.0.0.1 8079
+
+then run simply run:
+
+root@flipchan:~#proxychains curl
+or whatever app you want

@@ -1,0 +1,37 @@
+
+
+most visited sites stats:
+http://www.alexa.com/topsites
+http://mostpopularwebsites.net/
+http://toolbar.netcraft.com/stats/topsites
+
+
+packetstorm, youtube, amazon, cxsecurity, and why not have some fun with tinyurl
+
+https://packetstormsecurity.com/news/view/26898/Blogger-Turns-Tables-On-Cyber-Scammer.html or https://packetstormsecurity.com/files/favorite/138347/ -- favorite id
+
+https://www.amazon.com/b/?_encoding=UTF8&node=6669702011 - randomize the node id
+
+https://www.youtube.com/watch?v=H0g3Z77synI -- randomize the watch id
+
+https://cxsecurity.com/issue/WLB-2016080149 - WE CAN RANDOMIZE THE CVE NR
+
+http://rtm.ebay.com/clk?RtmClk&u=1H4sIAAAAAAAAAEXMT2uDMBzG8bvgexBGd0vNLzF%2FLIThag8De2phDIQSY1pDW5U0rmyvfhYGvTyXz5fnZT%2FZpJhOCfAEixWIFYNku9snBAOPIz%2BpLoSxXqXp%2FX5f2kb%2FLM1wTV24pmsX3K%2Ft0cYMqPTu26L3y2RR0Z%2Fs5YY%2BB39p0brzQz%2BcvB47VFkdOuvR1vYz62A6VOwlJhhhWqEUBHDJWUaogLdD8OdR%2B%2ButVgvC%2FTgejGsXtGSctpRk2GYN5lJCbnPL2TH%2Fj9yzItrwR2WONM8aIYwB9vq4vbm2VnGkB4Xnda0qi4%2Fqq9wU1S6OmlZBLrIckzhyswkmiZBYcGCCQiaBzeDPCuLoD0z0BGU6AQAA&ch=3&g=93b72e521560a624b0e5b7bdfff9fa8d&aii=7582780761573148152&lid=1974902&m=650405&pi=2057337%0A%09%09%09%09%09%09&%0A%09%09%09%09%09%09_trksid=e100084.m1843
+
+http://tinyurl.com/jh47v7m - send em to funny places
+
+https://www.youtube.com/watch?v=H0g3Z77synI - 11bytes
+
+
+
+we can randomize mysql id nr and other data that is not so noticeable
+
+make the files
+root@gibson:~#touch amazon.mar cxsecurity.mar packetstorm.mar tinyurl.mar ebay.mar youtube.mar
+root@gibson:~#echo leetdata > amazon.mar cxsecurity.mar packetstorm.mar tinyurl.mar ebay.mar youtube.mar
+
+record the traffic:
+tcpdump -n dst port 8080
+wireshark filter http
+
+i have added a wireshark dump of all plugins working
