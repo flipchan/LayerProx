@@ -1,0 +1,211 @@
+#!/usr/bin/env bash
+# stolen  from https://raw.githubusercontent.com/xanadu-linux/tor-strong/master/tor-strong
+#goal: get it to work with LayerProx so connect Tor -> socks4a(/Layerproxclient)
+
+LC_ALL=C
+if [[ "$EUID" != "0" ]]; then
+	echo -e "\e[00;31mERROR: DEBES SER ROOT\e[00m"
+	exit 1
+fi
+trap "rm -f /run/$(basename $0).pid; exit" 0 1 2 3 15
+echo "$BASHPID" > /run/$(basename $0).pid
+lock="/run/tor.lock"
+torpath="/etc/tor/torrc"
+proxypath="/etc/proxychains.conf"
+
+function iptables_clean () {
+	iptables -F
+	iptables -X
+	iptables -Z
+	iptables -t nat -F
+	iptables -t nat -X
+	iptables -t mangle -F
+	iptables -t mangle -X
+	iptables -P INPUT ACCEPT
+	iptables -P FORWARD ACCEPT
+	iptables -P OUTPUT ACCEPT
+}
+
+case "$1" in
+	install)
+#Lets assume that u allready got everything installed
+#		mkdir -p /var/lib/tor
+#		mkdir -p /var/log/tor
+#		echo "deb http://deb.torproject.org/torproject.org/ sid main" > /etc/apt/sources.list.d/tor.list
+#		echo "deb-src http://deb.torproject.org/torproject.org/ sid main" >> /etc/apt/sources.list.d/tor.list
+#		gpg --keyserver http-keys.gnupg.net --recv 886DDD89
+#		gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+#		apt update
+#		apt -y install deb.torproject.org-keyring
+#		apt update
+#		apt -y install privoxy tor tor-arm dnsmasq proxychains tsocks
+		cp -f /etc/tor/torrc /etc/tor/torrc.old
+#		cp -f /etc/polipo/config /etc/polipo/config.old
+##		cp -f /etc/privoxy/config /etc/privoxy/config.old
+#		cp -f /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+		# torrc
+		echo "## SocksPort para trafico generico" > $torpath
+		echo "SocksPort 9050 IsolateDestAddr IsolateDestPort" >> $torpath
+		echo "## SocksPort para el navegador" >> $torpath
+		echo "SocksPort 9151" >> $torpath
+		echo "RunAsDaemon 1" >> $torpath
+		echo "DataDirectory /var/lib/tor" >> $torpath
+		echo "CookieAuthentication 1" >> $torpath
+		echo "SafeSocks 1" >> $torpath
+		echo "PIDFile /run/tor/tor.pid" >> $torpath
+		echo "AvoidDiskWrites 1" >> $torpath
+		echo "VirtualAddrNetworkIPv4 10.192.0.0/10" >> $torpath
+	#	echo "DNSPort 9053" >> $torpath
+		echo "AutomapHostsOnResolve 1" >> $torpath
+		echo "AutomapHostsSuffixes .exit,.onion" >> $torpath
+		echo "TransPort 9040" >> $torpath
+		echo "User debian-tor" >> $torpath
+		echo "DisableDebuggerAttachment 0" >> $torpath
+		echo "ControlSocket /run/tor/control" >> $torpath
+		echo "ControlSocketsGroupWritable 1" >> $torpath
+		echo "CookieAuthFileGroupReadable 1" >> $torpath
+		echo "CookieAuthFile /run/tor/control.authcookie" >> $torpath
+		echo "Log notice file /var/log/tor/log" >> $torpath
+		# polipo
+	#	echo "logSyslog = true" > $polipopath
+	#	echo "logFile = /var/log/polipo/polipo.log" >> $polipopath
+	#	echo "socksParentProxy = localhost:9151" >> $polipopath
+	#	echo "socksProxyType = socks5" >> $polipopath
+	#	echo 'proxyAddress = "127.0.0.1"' >> $polipopath
+	##	echo "proxyPort = 8123" >> $polipopath
+	#	echo "allowedClients = 127.0.0.1" >> $polipopath
+	#	echo "allowedPorts = 1-65535" >> $polipopath
+	#	echo 'diskCacheRoot = "/var/cache/polipo/"' >> $polipopath
+	#	echo "cacheIsShared = false" >> $polipopath
+	#	echo 'localDocumentRoot = ""' >> $polipopath
+	#	echo 'proxyName = "localhost"' >> $polipopath
+	#	echo "disableLocalInterface = true" >> $polipopath
+	#	echo "disableConfiguration = true" >> $polipopath
+	#	echo "dnsUseGethostbyname = yes" >> $polipopath
+	#	echo "dnsQueryIPv6 = no" >> $polipopath
+	#	echo "disableVia = true" >> $polipopath
+	#	echo "#censoredHeaders = from,accept-language,x-pad,link" >> $polipopath
+	#	echo "#censorReferer = maybe" >> $polipopath
+	#	echo "maxConnectionAge = 5m" >> $polipopath
+	#	echo "maxConnectionRequests = 120" >> $polipopath
+	#	echo "serverMaxSlots = 8" >> $polipopath
+	#	echo "serverSlots = 2" >> $polipopath
+	#	echo "tunnelAllowedPorts = 1-65535" >> $polipopath
+		#echo "pidFile = /run/polipo.pid" >> $polipopath
+		# privoxy
+	#	echo "user-manual /usr/share/doc/privoxy/user-manual" > $privpath
+	#	echo "confdir /etc/privoxy" >> $privpath
+	#	echo "logdir /var/log/privoxy" >> $privpath
+	#	echo "actionsfile match-all.action" >> $privpath
+		#echo "actionsfile default.action" >> $privpath
+		#echo "actionsfile user.action" >> $privpath
+	#	echo "filterfile default.filter" >> $privpath
+	#	echo "filterfile user.filter" >> $privpath
+	#	echo "logfile logfile" >> $privpath
+	#	echo "hostname privoxy" >> $privpath
+	#	echo "listen-address  :8118" >> $privpath
+	#	echo "toggle  1" >> $privpath
+	#	echo "enable-remote-toggle  0" >> $privpath
+	#	echo "enable-remote-http-toggle  0" >> $privpath
+		#echo "enable-edit-actions 0" >> $privpath
+	#	echo "enforce-blocks 0" >> $privpath
+	#	echo "buffer-limit 4096" >> $privpath
+	#	echo "enable-proxy-authentication-forwarding 0" >> $privpath
+	#	echo "forward   /               127.0.0.1:8123" >> $privpath
+	#	echo "forward         192.168.*.*/     ." >> $privpath
+	#	echo "forward            10.*.*.*/     ." >> $privpath
+	#	echo "forward           127.*.*.*/     ." >> $privpath
+	#	echo "forwarded-connect-retries  0" >> $privpath
+	#	echo "accept-intercepted-requests 0" >> $privpath
+	#	echo "allow-cgi-request-crunching 0" >> $privpath
+	#	echo "split-large-forms 0" >> $privpath
+	#	echo "keep-alive-timeout 5" >> $privpath
+	#	echo "tolerate-pipelining 1" >> $privpath
+	#	echo "socket-timeout 300" >> $privpath
+	#	# dnsmasq
+	#	echo "port=53" > $dnspath
+	#	echo "domain-needed" >> $dnspath
+	#	echo "bogus-priv" >> $dnspath
+	#	echo "user=dnsmasq" >> $dnspath
+	#	echo "group=dnsmasq" >> $dnspath
+	#	echo "cache-size=2048" >> $dnspath
+	#	echo "neg-ttl=3600" >> $dnspath
+	#	echo "no-resolv" >> $dnspath
+	#	echo "server=127.0.0.1#9053" >> $dnspath
+	#	echo "server=208.67.222.222" >> $dnspath
+	#	# proxychains
+		echo "dynamic_chain" > $proxypath
+		echo "quiet_mode" >> $proxypath
+#		echo "proxy_dns" >> $proxypath
+		echo "tcp_read_time_out 15000" >> $proxypath
+		echo "tcp_connect_time_out 8000" >> $proxypath
+		echo "[ProxyList]" >> $proxypath
+#		echo "http  127.0.0.1 8118" >> $proxypath
+		echo "socks5  127.0.0.1 9050" >> $proxypath#tor
+		echo "socks4a clientip port" >> $proxypath#layerprox
+		# cleaning up
+		adduser --system --no-create-home debian-tor debian-tor
+		chown debian-tor:debian-tor /var/log/tor /var/lib/tor
+		chown debian-tor:debian-tor /run/tor
+		chmod 600 /var/lib/tor /var/log/tor
+		chmod u+x /var/lib/tor /var/log/tor
+		chmod g+rw /etc/tor/ /etc/tor/*
+		chmod 0700 /run/tor
+		chgrp debian-tor /etc/tor/ /etc/tor/*
+		rm -fv /usr/share/tor/tor-service-defaults-torrc
+		ln -sv /etc/tor/torrc /usr/share/tor/tor-service-defaults-torrc
+		echo "Finished, it's recommended to restart..."
+		;;
+
+	start)
+		if [[ -f "$lock" ]]; then
+			echo "Tor is already running."
+		else
+			touch "$lock"
+			mkdir /run/tor
+			chown debian-tor:debian-tor /run/tor
+			chgrp debian-tor /run/tor
+			chmod 700 /run/tor
+			iptables_clean
+##			iptables -A INPUT -p udp --sport 53 -j ACCEPT
+#			iptables -A INPUT -p udp --dport 53 -j ACCEPT
+#			iptables -A OUTPUT -p udp --sport 53 -j ACCEPT
+#			iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+			iptables -A INPUT -p udp -j DROP
+			iptables -A OUTPUT -p udp -j DROP
+			service ssh stop
+			service tor start
+#			service polipo start
+#			service privoxy start
+#			service dnsmasq restart
+			tsocks -on
+			echo "Wait while TOR starts will be notified upon completion of the task."
+			sleep 30
+			echo "Start completed. Enter the following PROXY settings in your browser: localhost port 8118 (9151 for socks) and localhost port 9050 to others apps that use socks."
+		fi
+		;;
+
+	stop)
+	    	if [[ -f "$lock" ]]; then
+#			service privoxy stop
+#			service polipo stop
+			service tor stop
+#			service dnsmasq restart
+			tsocks -off
+			iptables_clean
+			rm -f /run/tor/tor.pid
+#			rm -f /run/polipo.pid
+#			rm -f /run/privoxy.pid
+			rm -f $lock
+			echo -e "\e[00;1;92mFinished...\e[00m"
+		else
+			echo "Tor not's running."
+		fi
+		;;
+
+	*)
+		echo "Usage: $(basename $0) {install|start|stop}"
+		;;
+esac
+rm -f /run/$(basename $0).pid
+exit 0
