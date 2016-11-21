@@ -50,6 +50,7 @@ def parse_conf():
 	conf_["crypt.clientpassword"] = confparser.get('crypt', 'clientpassword')
 	conf_["crypt.serverpassword"] = confparser.get('crypt', 'serverpassword')
 	conf_["crypt.clienthomedir"] = confparser.get('crypt', 'clienthomedir')
+	conf_["server.database"] = confparser.get('server', 'database')
         conf_["server.server_ip"] = confparser.get("server", "server_ip")
         conf_["server.proxy_ip"] = confparser.get("server", "proxy_ip")
         conf_["server.proxy_port"] = confparser.getint("server", "proxy_port")
