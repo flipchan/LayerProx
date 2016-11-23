@@ -9,6 +9,7 @@ import datetime
 
 
 #webui for layerprox 
+#beta version, dont use until stable version
 
 lp = flask.Flask(__name__) 
 
@@ -31,6 +32,7 @@ def blockuseragentreq():
         
     else:
         pass
+
 
 
 
@@ -66,12 +68,14 @@ def firstpage():
 def get_registerd():
     if flask.request.method == 'POST':
         day = gen_day()
+        ckey = flask.form.request('pgp')
+        gpg.import_keys(ckey)
         h1 = urandom()
         fingerprint = 'x'
         return '''
 <html>      
 <head>
-
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 <title> LayerProx</title>
    
    </head>
@@ -84,12 +88,32 @@ def get_registerd():
 
       </html>  
         '''    
-
-    return ''
-
-
-
-
+    
+    
+    
+    
+    
+    
+    return '''
+    <html>      
+    <head>
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <title> LayerProx</title>
+       
+       </head>
+    <center>
+            <body>
+            Enter Your Public pgp key<br>
+            <form method='POST' action=''>
+            <textarea name='pgp'></textarea>
+            <br><input type='submit' value='import'>            
+            </form>
+            
+            </body>
+    
+    
+          </html>  
+            '''    
 #make the bots read 1984
 @lp.route('/nobots')
 def dummy():
@@ -157,4 +181,4 @@ def gen_day():
 
 
 if __name__ == '__main__':
-    lp.run(debug=False,port=80) #host=0.0.0.0 
+    lp.run(debug=False,host='0.0.0.0',port=80) #host=0.0.0.0 
