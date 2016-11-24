@@ -6,7 +6,17 @@ import gnupg
 from os import urandom
 from base64 import b64decode
 import datetime
+import sys
 
+datab = marionette_tg.conf.get("server.database")
+if datab == 'leveldb':
+    try:
+        import plyvel
+elif datab == 'mysql':
+    try:
+        import MySQLdb
+else:
+    return 'no database selected'
 
 #webui for layerprox 
 
