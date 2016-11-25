@@ -97,8 +97,22 @@ def get_registerd():
 
     return ''
 
+#choice a serve
+#choice a serverr
 
+#if sucess redirect to
+@lp.route('/welcome')
+def wel():
+	return ''' 
+<html>
 
+<body>
+<center>
+<h1>Welcome to the LayerProx network</h1>
+</body>
+
+</html>
+	'''
 
 #make the bots read 1984
 @lp.route('/nobots')
