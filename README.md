@@ -88,7 +88,10 @@ else it is easy to do so
 
 start:
 ------
+
 ```console
+follow start.txt guide to configure it 
+
 ./bin/marionette_server --server_ip 0.0.0.0 --proxy_ip 0.0.0.0 --proxy_port 8081 --format custom/ebay --debug
 
  ./bin/marionette_client --server_ip 0.0.0.0 --client_ip 127.0.0.1 --client_port 8079 --format custom/ebay --debug
