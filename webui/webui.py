@@ -109,6 +109,7 @@ def firstpage():
 
 
 @lp.route('/getproxied', methods=['GET', 'POST'])
+@antifingerprint
 def get_registerd():
 	if flask.request.method == 'POST':
 		day = gen_day()
@@ -137,6 +138,7 @@ def get_registerd():
 
 #if sucess redirect to
 @lp.route('/welcome')
+@antifingerprint
 def wel():
 	return ''' 
 <html>
@@ -151,11 +153,14 @@ def wel():
 
 #make the bots read 1984
 @lp.route('/nobots')
+@antifingerprint
 def dummy():
+	
 	return flask.redirect('http://msxnet.org/orwell/1984.pdf', code=302)
 
 #tell noone pub info, only dax
 @lp.route('/robots.txt')
+@antifingerprint
 def robots():
 	return '''
     User-agent: *
