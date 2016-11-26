@@ -11,8 +11,8 @@
 #https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016
 
 
-import scrypt
-password = 'abc123uj'
+#import scrypt
+#password = 'abc123uj'
 from base64 import b64encode, b64decode
 import sys, os
 import marionette_tg.conf
@@ -22,6 +22,14 @@ clientkey = marionette_tg.conf.get("crypt.clientkey")
 serverkey = marionette_tg.conf.get("crypt.serverkey")
 clientpassword = marionette_tg.conf.get("crypt.clientpassword")
 serverpassword = marionette_tg.conf.get("crypt.serverpassword")
+database = marionette_tg.conf.get("server.database")
+
+if database == 'leveldb':
+    import plyvel
+elif database == 'mysql':
+    import MySQLdb 
+else:
+    print 'error'
 
 from otw import justencrypt, justdecrypt
 
