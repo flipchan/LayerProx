@@ -70,6 +70,7 @@ def blockuseragentreq():
 #protection against server fingerprinting 
 def antifingerprint(f):
 	jibbrish = base64.b64encode(urandom(13))
+	jibbrish = jibbrish.replace("==", "")
 	@wraps(f)	
 	@add_response_headers({'Server': jibbrish})
 	def decorated_function(*args, **kwargs):
