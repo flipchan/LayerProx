@@ -23,6 +23,17 @@ serverkey = marionette_tg.conf.get("crypt.serverkey")
 clientpassword = marionette_tg.conf.get("crypt.clientpassword")
 serverpassword = marionette_tg.conf.get("crypt.serverpassword")
 database = marionette_tg.conf.get("server.database")
+choice = marionette_tg.conf.get("server.typeofmachine")
+
+thekey = ''
+    
+if choice == 'client':
+    thekey = clientkey
+elif choice == 'server':
+    thekey = serverkey
+else:
+    raise EnvironmentError
+    
 
 if database == 'leveldb':
     import plyvel
