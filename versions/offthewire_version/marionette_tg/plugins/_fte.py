@@ -10,14 +10,14 @@
 #https://paragonie.com/blog/2015/08/you-wouldnt-base64-a-password-cryptography-decoded
 #https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016
 
-
 #import scrypt
 #password = 'abc123uj'
 from base64 import b64encode, b64decode
 import sys, os
 import marionette_tg.conf
 password = marionette_tg.conf.get("crypt.scrypt")
-home = marionette_tg.conf.get("crypt.clienthomedir")
+chome = marionette_tg.conf.get("crypt.clienthomedir")
+shome = marionette_tg.conf.get("crypt.serverhomedir")
 clientkey = marionette_tg.conf.get("crypt.clientkey")
 serverkey = marionette_tg.conf.get("crypt.serverkey")
 clientpassword = marionette_tg.conf.get("crypt.clientpassword")
@@ -29,8 +29,14 @@ thekey = ''
     
 if choice == 'client':
     thekey = clientkey
+    home = chome
+    gpgpassword = clientpassword
+    fingerprint = clientkey
 elif choice == 'server':
     thekey = serverkey
+    home = shome
+    gpgpassword = serverpassword
+    fingerprint = serverkey
 else:
     raise EnvironmentError
     
@@ -47,10 +53,6 @@ from otw import justencrypt, justdecrypt
 import gnupg
 gpg = gnupg.GPG(homedir=home)# gpg home
 gpg.encoding = 'utf-8'
-
-#client conf
-gpgpassword = clientpassword#client or server password
-fingerprint = serverkey#define fingerprint as client or server key
 
 import math
 
