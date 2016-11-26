@@ -29,3 +29,36 @@ clienthomedir = '/home/testclientuser/.gnupg'
 clientpassword = 'iamaclientpasswd'
 serverpassword = 'serverpassword'
 test = 's'
+
+
+
+guide:
+
+[general]
+debug = false - run it in debug mode as default
+autoupdate = false
+update_server = 52.1.141.212
+format = dummy - default format if nothing is defined
+
+[client]
+client_ip = 127.0.0.1 - client ip that listens for incoming connections if nothing is defined
+client_port  = 8079 - proxy port 
+
+[server]
+server_ip = 127.0.0.1 -servers default ip
+proxy_ip  = 127.0.0.1 -servers default ip
+proxy_port   = 8081 -servers port
+scrypt = 'change]this-to0something/good' -scrypt password , will be upgraded and replaced with otw crypto soon 
+test = 'a' -- ignore this
+database = 'leveldb' -- choice if you want to run mysql or leveldb
+
+[crypt]
+scrypt = 'scrypt password' -scrypt password , will be upgraded and replaced with otw crypto soon
+clientkey = 'client pgp fingerprint' -client pgp fingerprint 
+                                                              ---- enter you servers/clients machine ur sending data to/from
+serverkey = 'server pgp fingerprint' - server pgp fingerprint
+serverhomedir = 'server gpg directory'
+clienthomedir = 'client gpg directory'
+clientpassword = 'clientpgppassword'  - the clients password - only enable this if you are the client
+serverpassword = 'serverpgppassword' - the servers password - only enable this if you are the server
+typeofmachine = 'client' - are you a client or a server
