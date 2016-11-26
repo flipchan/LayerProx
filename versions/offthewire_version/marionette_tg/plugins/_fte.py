@@ -31,12 +31,12 @@ if choice == 'client':
     thekey = clientkey
     home = chome
     gpgpassword = clientpassword
-    fingerprint = clientkey
+    fingerprint = serverkey
 elif choice == 'server':
     thekey = serverkey
     home = shome
     gpgpassword = serverpassword
-    fingerprint = serverkey
+    fingerprint = clientkey
 else:
     raise EnvironmentError
     
