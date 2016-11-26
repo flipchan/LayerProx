@@ -1,3 +1,10 @@
+git clone https://github.com/flipchan/layerprox.git
+
+cd layerprox
+
+configure it 
+vim /marionette_tg/marionette.conf
+
 ./bin/marionette_server --server_ip 0.0.0.0 --proxy_ip 0.0.0.0 --proxy_port 8081 --format http_active_probing --debug
 
  ./bin/marionette_client --server_ip 0.0.0.0 --client_ip 127.0.0.1 --client_port 8079 --format http_active_probing --debug
