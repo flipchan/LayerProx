@@ -47,6 +47,7 @@ def parse_conf():
 	conf_["crypt.clientkey"] = confparser.get('crypt', 'clientkey')
 	conf_["crypt.serverkey"] = confparser.get('crypt', 'serverkey')
  	conf_["crypt.serverhomedir"] = confparser.get('crypt', 'serverhomedir')
+	conf_["server.database_dir"] = confparser.get('server', 'database_dir')
 	conf_["crypt.clientpassword"] = confparser.get('crypt', 'clientpassword')
 	conf_["crypt.serverpassword"] = confparser.get('crypt', 'serverpassword')
 	conf_["crypt.clienthomedir"] = confparser.get('crypt', 'clienthomedir')
