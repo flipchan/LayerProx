@@ -15,10 +15,11 @@ from functools import wraps
 
 
 datab = marionette_tg.conf.get("server.database")
-
+dbdir = marionette_tg.conf.get("server.database_dir")
 
 if datab == 'leveldb':
 	import plyvel
+	db = plyvel.DB(dbdir, create_if_missing=True)
 elif datab == 'mysql':
     	import MySQLdb 
 else:
