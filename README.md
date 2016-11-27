@@ -31,8 +31,12 @@ each user has its uniq keys for the crypto with a expire date to help improve se
 
 Currently works on/with:
 -----------------------
-Debian 7-8, kali 1-2, mac osx, windows 7, raspberry pi(raspbian jessie)
+Debian 7-8, kali 1-2, mac osx, windows 7, raspberry pi(raspbian jessie), ubuntu 16.10
 and also works with proxychains so you can proxy applications through it
+
+
+
+i recommend that you wait deploying this until version offthewire is stable (a day or two)
 
 
 
@@ -51,7 +55,7 @@ crypto sys: pgp + aes-ctr + hmac
 
 install:
 --------
-python setup.py
+python setup.py install/build - its recommended that u use a stable version and an installer
 create a test user on the client and server and then make pgp keys for those two
 
 What is LayerProx?
