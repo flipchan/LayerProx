@@ -25,7 +25,6 @@ from Crypto.Hash import HMAC as _HMAC
 from Crypto.Cipher import AES
 
 import gnupg
-home = '' #set gpg homedir
 gpg = gnupg.GPG(homedir=home)
 gpg.encoding = 'utf-8'
 fingerprint = ''#fingerprint 
@@ -91,9 +90,10 @@ def aesctr_crypt(key1, key2, data):
 
     
 #sign and encrypt
-def justencrypt(key1, key2, data, fingerprint, keyide, password):
+def justencrypt(key1, key2, data, fingerprint, keyide, password, home):
 	#crypt
 	thedata = str(data)
+	gpg = gnupg.GPG(homedir=home)	
 	sig = gpg.sign(thedata, default_key=fingerprint, passphrase=password)
 	thedata = gpg.encrypt(sig, fingerprint) #lets just encrypt it to our selfs
 	#sha256hmac160
@@ -104,11 +104,12 @@ def justencrypt(key1, key2, data, fingerprint, keyide, password):
 	return thedata
 
 #gpg passwd define
-def justdecrypt(key1, key2, data, password):
+def justdecrypt(key1, key2, data, password, home):
 	#decrypt it
 	#verify the hmac
 	odata = data
 	s = data
+	gpg = gnupg.GPG(homedir=home)	
 	s[:32] = hdata  #pic the first 32chars which should be the hmac
 	hdata = str(hdata)
 	theh = str(SHA256HMAC160(key1, key2))
