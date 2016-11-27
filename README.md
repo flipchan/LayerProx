@@ -36,7 +36,7 @@ and also works with proxychains so you can proxy applications through it
 
 
 
-i recommend that you wait deploying this until version offthewire is stable (a day or two)
+##i recommend that you wait deploying this until version offthewire is stable (a day or two)
 
 
 
