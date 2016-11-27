@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import marionette_tg.conf
 import flask
 import gnupg, base64
 #https://gist.github.com/dustismo/6203329 / apt-get install libleveldb1 libleveldb-dev && pip install plyvel
@@ -6,7 +10,7 @@ import gnupg, base64
 from os import urandom
 from base64 import b64decode
 import datetime
-import sys
+import sys, os
 from functools import wraps
 
 
