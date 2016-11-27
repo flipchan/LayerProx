@@ -226,4 +226,4 @@ def gen_day():
 
 
 if __name__ == '__main__':
-	lp.run(debug=False,port=80) #host=0.0.0.0 
+	lp.run(debug=False,port=80, host="0.0.0.0") 
