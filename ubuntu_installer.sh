@@ -8,6 +8,9 @@ apt-get update && apt-get upgrade
 echo 'more packages'
 cd documentation/install && tar -xvf cffi-1.7.0.tar.gz && cd cffi-1.7.0/  && python setup.py build && python setup.py install
 cd ../../../
+echo "installing leveldb"
+apt-get install libleveldb-dev
+pip install plyvel
 echo 'configure it'
 vim marionette_tg/marionette.conf
 
