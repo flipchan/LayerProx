@@ -80,4 +80,4 @@ def set(key, value):
     except:
         parse_conf()
     finally:
-conf_[key] = value
+	conf_[key] = value
