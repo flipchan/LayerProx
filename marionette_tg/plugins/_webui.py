@@ -12,23 +12,29 @@ from base64 import b64decode
 import datetime
 import sys, os
 from functools import wraps
-
+from otw import justencrypt, justdecrypt, genhmac
 
 datab = marionette_tg.conf.get("server.database")
 dbdir = marionette_tg.conf.get("server.database_dir")
+home = marionette_tg.conf.get("crypt.serverhomedir")
+
+gpg = gnupg.GPG(homedir=home)# gpg home
+gpg.encoding = 'utf-8'
 
 if datab == 'leveldb':
 	import plyvel
 	db = plyvel.DB(dbdir, create_if_missing=True)
 elif datab == 'mysql':
     	import MySQLdb 
+	passwdd = marionette_tg.conf.get("server.mysql_password")
+	usr = marionette_tg.conf.get("server.mysql_user")
+	databasee = marionette_tg.conf.get("server.mysql_database")
+	db = MySQLdb.connect(host='localhost', user=usr, passwd=passwdd, db=databasee)	
 else:
-	print 'error'
+	print 'error - database undefined'
 #webui for layerprox 
 
 lp = flask.Flask(__name__) 
-
-dbplace = '' #database directory, test: '/tmp/testdb/'
 
 def add_response_headers(headers={}):
 	def decorator(f):
@@ -101,6 +107,8 @@ def firstpage():
 <br>
 
 <t>get encrypted by goin to /getproxied</t>
+<br><br>this server have not been compromised as long as <a href='/canary'>THIS CANARY</> is not expired 
+<br>and is signed by the administrators pgp key
 
 </center>
 </body>
@@ -108,6 +116,15 @@ def firstpage():
     </html>
     
     '''
+
+
+@lp.route('/canary', methods=['GET'])
+def canary():#export servers private key
+	return '''
+	canary goes here
+
+	'''
+
 
 
 #@lp.route('', methods=['GET'])
