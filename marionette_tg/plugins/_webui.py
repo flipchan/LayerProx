@@ -21,6 +21,7 @@ home = marionette_tg.conf.get("crypt.serverhomedir")
 gpg = gnupg.GPG(homedir=home)# gpg home
 gpg.encoding = 'utf-8'
 
+
 if datab == 'leveldb':
 	import plyvel
 	db = plyvel.DB(dbdir, create_if_missing=True)
@@ -128,6 +129,14 @@ def canary():#export servers private key
 
 
 #@lp.route('', methods=['GET'])
+
+
+#server pgp pub key
+@lp.route('/serverkey', methods=['GET'])
+def pk():
+	nyckeln = 
+	gpg.export_keys(nyckeln)	
+	return 
 
 
 @lp.route('/getproxied', methods=['GET', 'POST'])

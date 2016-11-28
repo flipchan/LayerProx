@@ -56,6 +56,7 @@ def parse_conf():
 	conf_["server.mysql_database"] = confparser.get('server', 'mysql_database')
 	conf_["server.database"] = confparser.get('server', 'mysql_database')
         conf_["server.server_ip"] = confparser.get("server", "server_ip")
+	conf_["crypt.keyid"] = confparser.get("crypt", "keyid")	
 	conf_["server.typeofmachine"] = confparser.get("server", "typeofmachine")
         conf_["server.proxy_ip"] = confparser.get("server", "proxy_ip")
         conf_["server.proxy_port"] = confparser.getint("server", "proxy_port")
