@@ -134,9 +134,9 @@ def canary():#export servers private key
 #server pgp pub key
 @lp.route('/serverkey', methods=['GET'])
 def pk():
-	nyckeln = 
-	gpg.export_keys(nyckeln)	
-	return 
+	nyckeln = marionette_tg.conf.get('crypt.keyid')
+	ascii_pub = gpg.export_keys(nyckeln)	
+	return ascii_pub
 
 
 @lp.route('/getproxied', methods=['GET', 'POST'])
