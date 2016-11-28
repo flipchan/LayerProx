@@ -25,7 +25,7 @@ from Crypto.Hash import HMAC as _HMAC
 from Crypto.Cipher import AES
 
 import gnupg
-gpg = gnupg.GPG(homedir=home)
+#gpg = gnupg.GPG(homedir=home)
 gpg.encoding = 'utf-8'
 fingerprint = ''#fingerprint 
 password = ''#gpg passwd

@@ -15,7 +15,6 @@ from functools import wraps
 from otw import justencrypt, justdecrypt, genhmac
 
 datab = marionette_tg.conf.get("server.database")
-dbdir = marionette_tg.conf.get("server.database_dir")
 home = marionette_tg.conf.get("crypt.serverhomedir")
 
 gpg = gnupg.GPG(homedir=home)# gpg home
@@ -24,6 +23,7 @@ gpg.encoding = 'utf-8'
 
 if datab == 'leveldb':
 	import plyvel
+	dbdir = marionette_tg.conf.get("server.database_dir")	
 	db = plyvel.DB(dbdir, create_if_missing=True)
 elif datab == 'mysql':
     	import MySQLdb 
