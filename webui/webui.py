@@ -98,6 +98,7 @@ def firstpage():
 
 <html>
 <head>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <title>LayerProx</title>
 </head>
 <body>
@@ -167,10 +168,17 @@ def get_registerd():
 
 	return '''
 <html>
-
+<head>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<title>Layerprox</title>
+</head>
 <center>
-Soon
-     <form action='' method='POST'> 
+
+
+
+<br>
+pgp key:
+ <br>    <form action='' method='POST'> 
 <textarea name='pgp' placeholder="enter in your public pgp key"></textarea>
 <input type='submit'>     
      </form>
@@ -185,7 +193,9 @@ Soon
 def wel():
 	return ''' 
 <html>
-
+<head>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</head>
 <body>
 <center>
 <h1>Welcome to the LayerProx network</h1>
