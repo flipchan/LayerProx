@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import marionette_tg.conf
 import flask
 import gnupg, base64
 #https://gist.github.com/dustismo/6203329 / apt-get install libleveldb1 libleveldb-dev && pip install plyvel
@@ -6,15 +10,16 @@ import gnupg, base64
 from os import urandom
 from base64 import b64decode
 import datetime
-import sys
+import sys, os
 from functools import wraps
 
 
-#datab = marionette_tg.conf.get("server.database")
-datab = 'mysql'
+datab = marionette_tg.conf.get("server.database")
+dbdir = marionette_tg.conf.get("server.database_dir")
 
 if datab == 'leveldb':
 	import plyvel
+	db = plyvel.DB(dbdir, create_if_missing=True)
 elif datab == 'mysql':
     	import MySQLdb 
 else:
@@ -221,4 +226,4 @@ def gen_day():
 
 
 if __name__ == '__main__':
-	lp.run(debug=False,port=80) #host=0.0.0.0 
+	lp.run(debug=False,port=80, host="0.0.0.0") 
