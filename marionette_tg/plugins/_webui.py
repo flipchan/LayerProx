@@ -145,6 +145,8 @@ def get_registerd():
 	if flask.request.method == 'POST':
 		day = gen_day()
 		h1 = urandom()
+		key_data = flask.request.form.get('pgp')
+		pub_key = gpg.import_keys(key_data)
 		fingerprint = 'x'
 		return '''
 <html>      
@@ -163,7 +165,17 @@ def get_registerd():
       </html>  
         '''    
 
-    
+	return '''
+<html>
+
+<center>
+Soon
+     <form action='' method='POST'> 
+<textarea name='pgp' placeholder="enter in your public pgp key"></textarea>
+<input type='submit'>     
+     </form>
+
+</html>    '''
 #choice a serve
 #choice a serverr
 
