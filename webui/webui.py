@@ -101,6 +101,8 @@ def firstpage():
 <br>
 
 <t>get encrypted by goin to /getproxied</t>
+<br><br>this server have not been compromised as long as <a href='/canary'>THIS CANARY</> is not expired 
+<br>and is signed by the administrators pgp key
 
 </center>
 </body>
@@ -111,6 +113,14 @@ def firstpage():
 
 
 #@lp.route('', methods=['GET'])
+
+#canary
+@lp.route('/canary')
+def canary():#export servers private key
+	return '''
+	canary goes here
+	
+	'''
 
 
 @lp.route('/getproxied', methods=['GET', 'POST'])
