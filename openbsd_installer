@@ -1,0 +1,17 @@
+echo 'Layerprox installer for openbsd'
+
+echo 'installing python'
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-flask-0.10.1p1.tgz
+echo 'installing cffi'
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-cffi-1.4.2.tgz
+echo 'crypto'
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-crypto-2.6.1p2.tgz
+echo 'py-curl'
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-curl-7.21.5.tgz
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-cryptography-1.2.1.tgz
+echo 'devs'
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-dev-1.4.6p3.tgz
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-mysql-1.2.5p2.tgz 
+pkg_add http://ftp.eu.openbsd.org/pub/OpenBSD/5.9/packages/i386/py-mysqlclient-1.3.7.tgz
+
+echo 'done'

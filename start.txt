@@ -1,6 +1,10 @@
 git clone https://github.com/flipchan/layerprox.git
 
 cd layerprox
+choice installer depending on ur os for more info check out documentation/
+
+
+for openbsd run openbsd installer and setup.openbsd instead of setup.py
 
 configure it 
 vim /marionette_tg/marionette.conf
