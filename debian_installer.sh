@@ -8,7 +8,7 @@ apt-get install git python-gnupg  libgmp-dev python-pip python-dev curl libcurl4
 
 echo 'changeing cffi'
 cd documentation/install && tar -xvf cffi-1.7.0.tar.gz && cd cffi-1.7.0 && python setup.py build && python setup.py install 
-pip install service_identity
+pip install service_identity pyblake2
 
 echo 'update'
 
