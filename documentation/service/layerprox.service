@@ -1,0 +1,10 @@
+[Unit]
+Description=A opensource network obfusciation proxy
+After=network.target
+
+[Service]
+PIDFile=/run/layerprox.pid
+ExecStart=/dir/webui.py
+
+[Install]
+WantedBy=multi-user.target
