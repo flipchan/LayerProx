@@ -16,7 +16,7 @@ from otw import * #justencrypt, justdecrypt, blakehmac
 
 datab = marionette_tg.conf.get("server.database")
 dbdir = marionette_tg.conf.get("server.database_dir")
-home = marionette_tg.conf.get("crypt.serverhomedir")
+home = marionette_tg.conf.get("crypt.gpgdir")
 
 gpg = gnupg.GPG(homedir=home)# gpg home
 gpg.encoding = 'utf-8'
