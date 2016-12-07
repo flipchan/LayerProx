@@ -3,7 +3,7 @@
 # Filename: otw.py
 
 __author__ = 'flipchan/aka\Filip Kälebo'
-__version__ = 1.5
+__version__ = 1.6
 #/*
 # * ----------------------------------------------------------------------------
 # * "THE BEER-WARE LICENSE" (Revision 42):
@@ -16,17 +16,21 @@ __version__ = 1.5
 #inspierd by https://github.com/python-otr/
 #build to provide stronger crypto in the LayerProx project
 
-#this is version 1.2 the latest crypto in layerprox
+#this is version 1.6 with changed hmac , now running a blake2b hmac
 #pgp sign and encrypt -> aes-ctr 256 -> hmac 
 
 from Crypto.Hash import SHA256 as _SHA256
 from Crypto.Hash import SHA as _SHA1
 from Crypto.Hash import HMAC as _HMAC
 from Crypto.Cipher import AES
+from pyblake2 import * #https://github.com/dchest/pyblake2
+
+
 
 import gnupg
+#home = '' #set gpg homedir
 #gpg = gnupg.GPG(homedir=home)
-gpg.encoding = 'utf-8'
+#gpg.encoding = 'utf-8'
 fingerprint = ''#fingerprint 
 password = ''#gpg passwd
 keyide = ''#my key id
@@ -64,9 +68,13 @@ def SHA256HMAC160(key, data):
 
 
 #only hmac
-def genhmac(key, data):
+def genshahmac(key, data):
     return SHA256HMAC(key, data)
-    
+
+def blakehmac(key, key2, data):
+    h = blake2b(data=data, digest_size=64, key=key, salt=key2)#128
+    blake = h.hexdigest()
+    return blake
     
     
 #>>> secret = os.urandom(16)
@@ -91,44 +99,46 @@ def aesctr_crypt(key1, key2, data):
     
 #sign and encrypt
 def justencrypt(key1, key2, data, fingerprint, keyide, password, home):
-	#crypt
-	thedata = str(data)
-	gpg = gnupg.GPG(homedir=home)	
-	sig = gpg.sign(thedata, default_key=fingerprint, passphrase=password)
-	thedata = gpg.encrypt(sig, fingerprint) #lets just encrypt it to our selfs
-	#sha256hmac160
-	thedata = aesctr_crypt(key1, key2, thedata) #aes-ctr it
-	#thedate = str(thedata) + SHA256HMAC160(key1, key2)#just gen a hmac
-	thedata = str(genhmac(key1, key2)) + str(thedata)
-	#output
-	return thedata
+    #crypt
+    thedata = str(data)
+    gpg = gnupg.GPG(homedir=home)
+    gpg.encoding = 'utf-8'
 
-#gpg passwd define
+    sig = gpg.sign(thedata, default_key=fingerprint, passphrase=password)
+    thedata = gpg.encrypt(sig, fingerprint) #lets just encrypt it to our selfs
+    #sha256hmac160
+    thedata = aesctr_crypt(key1, key2, thedata) #aes-ctr it
+    #thedate = str(thedata) + SHA256HMAC160(key1, key2)#just gen a hmac
+    thedata = str(blakehmac(key1, key2, key2)) + str(thedata)
+    #output
+    return thedata
+
+
 def justdecrypt(key1, key2, data, password, home):
-	#decrypt it
-	#verify the hmac
-	odata = data
-	s = data
-	gpg = gnupg.GPG(homedir=home)	
-	s[:32] = hdata  #pic the first 32chars which should be the hmac
-	hdata = str(hdata)
-	theh = str(SHA256HMAC160(key1, key2))
-	#if the hmac is hmac / verify the hmac
-	if theh == hdata:
-	    #aes decrypt
-		#if the hmac is true verify it 
-		s = s[32:] #remove hmac
-		#decrypt with aes-ctr
-		s = aesctr_decrypt(key1, key2, data)
-		s = str(s)
-		sig = gpg.decrypt(s, passphrase=password)
-		if not sig:
-		    return 'test'#   break, return ''
-		verify = gpg.verify(sig.data)
-		if not verify:
-		    print 'nope not verified'
-		    return 'no'#break
-		return data
-	else:#if the hmac is false break *
-		return 'error'#break
-		
+    #decrypt it
+    #verify the hmac
+    odata = data
+    s = data
+    gpg = gnupg.GPG(homedir=home)
+    gpg.encoding = 'utf-8'	
+    s[:128] = hdata  #pic the first 128chars which should be the blake hmac
+    hdata = str(hdata)
+    theh = str(blakehmac(key1, key2, key2))
+    #if the hmac is hmac / verify the hmac
+    if theh == hdata:
+	#aes decrypt
+	#if the hmac is true verify it 
+	s = s[128:] #remove hmac
+	#decrypt with aes-ctr
+	s = aesctr_decrypt(key1, key2, data)
+	s = str(s)
+	sig = gpg.decrypt(s, passphrase=password)
+	if not sig:
+	    return 'test'#   break, return ''
+	verify = gpg.verify(sig.data)
+	if not verify:
+	    print 'nope not verified'
+	    return 'no'#break
+	return data
+    else:#if the hmac is false break *
+	return 'error'#break
