@@ -14,6 +14,8 @@ pip install plyvel
 echo 'configure it'
 vim marionette_tg/marionette.conf
 
-echo 'done'
 python setup.py build
 python setup.py install
+echo 'createing symlink with conf file'
+ln -s /usr/local/lib/python2.7/dist-packages/marionette_tg-0.0.3-py2.7.egg/marionette_tg/marionette.conf  marionette_tg/marionette.conf 
+echo 'done'
