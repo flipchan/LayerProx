@@ -12,7 +12,7 @@ from base64 import b64decode
 import datetime
 import sys, os
 from functools import wraps
-from otw import justencrypt, justdecrypt, genhmac
+from otw import * #justencrypt, justdecrypt, blakehmac
 
 datab = marionette_tg.conf.get("server.database")
 dbdir = marionette_tg.conf.get("server.database_dir")
