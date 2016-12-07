@@ -19,7 +19,6 @@ pip install fte regex2dfa scrypt
 python setup.py build
 python setup.py install
 echo 'createing symlink with conf file'
-ln -s /usr/local/lib/python2.7/dist-packages/marionette_tg-0.0.3-py2.7.egg/marionette_tg/marionette.conf  marionette_tg/marionette.conf 
-
+ln -s /usr/local/lib/python2.7/dist-packages/marionette_tg-0.0.3-py2.7.egg/marionette_tg/marionette.conf layerprox.conf 
 echo 'now you just have to configure it :)'
 
