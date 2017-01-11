@@ -4,7 +4,7 @@ A rebuild of marionette, encrypted proxy that simulates general webtraffic.
 #attention! this project is under dev at the moment that started 11/1-2017 we advice all to wait til its done, probelly done 15/1 - 2017
 
 
-##Openbsd dev? contact me at -> flipchan[at]riseup.net
+##Openbsd dev? contact me at -> flipchan[at]riseup.net or layerproxdevelopment@tomuchmoney.club
 ###short update 11/01-2017, i been working on a ring scheme as auth but putting that aside and working on a stable version with off the wire
 
 core idea of LayerProx project make the person that is intercepting our data for example a mitm belive that we are visiting 
