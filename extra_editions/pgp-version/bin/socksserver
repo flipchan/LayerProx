@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import sys
+import argparse
+
+from twisted.internet import reactor
+from twisted.protocols import socks
+from twisted.python import log
+
+sys.path.append('.')
+
+import marionette_tg.conf
+
+parser = argparse.ArgumentParser(
+    description='SOCKS proxy server.')
+parser.add_argument('--local_port', '-lport', dest='local_port', required=True,
+    help='local port to listen on for HTTP requests')
+args = parser.parse_args()
+
+SOCKS_PORT = int(args.local_port)
+
+if '__main__' == __name__:
+    if marionette_tg.conf.get("general.debug"):
+        log.startLogging(sys.stdout)
+
+    reactor.listenTCP(SOCKS_PORT, socks.SOCKSv4Factory(None))
+    reactor.run()

@@ -1,0 +1,24 @@
+echo '''
+Debian installer
+works on kali linux aswell ^^
+'''
+echo 'installing packages'
+apt-get install git python-gnupg  libgmp-dev python-pip python-dev curl libcurl4-openssl-dev libssl-dev libpth-dev libffi-dev python-cffi libsodium-dev
+
+
+echo 'changeing cffi'
+cd documentation/install && tar -xvf cffi-1.7.0.tar.gz && cd cffi-1.7.0 && python setup.py build && python setup.py install 
+pip install service_identity pyblake2
+
+echo 'update'
+
+apt-get update && apt-get upgrade
+
+echo 'python setup'
+pip install fte regex2dfa scrypt
+python setup.py build
+python setup.py install
+echo 'createing symlink with conf file'
+ln -s /usr/local/lib/python2.7/dist-packages/marionette_tg-0.0.3-py2.7.egg/marionette_tg/marionette.conf layerprox.conf 
+echo 'now you just have to configure it :)'
+

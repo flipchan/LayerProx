@@ -1,0 +1,6 @@
+connection(tcp, ftp_pasv_port):
+    start ftp_pasv_transfer do_ftp_pasv_transfer 1
+    ftp_pasv_transfer end NULL 1
+
+action do_ftp_pasv_transfer:
+    server fte.send("ID3.*", 512)

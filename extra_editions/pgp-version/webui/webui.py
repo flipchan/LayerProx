@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import marionette_tg.conf
+#import marionette_tg.conf
 import flask
 import gnupg, base64
 #https://gist.github.com/dustismo/6203329 / apt-get install libleveldb1 libleveldb-dev && pip install plyvel
@@ -14,25 +14,25 @@ import sys, os
 from functools import wraps
 from otw import * #justencrypt, justdecrypt, blakehmac
 
-datab = marionette_tg.conf.get("server.database")
-dbdir = marionette_tg.conf.get("server.database_dir")
-home = marionette_tg.conf.get("crypt.gpgdir")
+#datab = marionette_tg.conf.get("server.database")
+#dbdir = marionette_tg.conf.get("server.database_dir")
+#home = marionette_tg.conf.get("crypt.gpgdir")
 
-gpg = gnupg.GPG(homedir=home)# gpg home
-gpg.encoding = 'utf-8'
+#gpg = gnupg.GPG(homedir=home)# gpg home
+#gpg.encoding = 'utf-8'
 
-
-if datab == 'leveldb':
-	import plyvel
-	db = plyvel.DB(dbdir, create_if_missing=True)
-elif datab == 'mysql':
-    	import MySQLdb 
-	passwdd = marionette_tg.conf.get("server.mysql_password")
-	usr = marionette_tg.conf.get("server.mysql_user")
-	databasee = marionette_tg.conf.get("server.mysql_database")
-	db = MySQLdb.connect(host='localhost', user=usr, passwd=passwdd, db=databasee)	
-else:
-	print 'error - database undefined'
+#dont need this stuff
+#if datab == 'leveldb':
+#	import plyvel
+#	db = plyvel.DB(dbdir, create_if_missing=True)
+#elif datab == 'mysql':
+#    	import MySQLdb 
+#	passwdd = marionette_tg.conf.get("server.mysql_password")
+#	usr = marionette_tg.conf.get("server.mysql_user")
+#	databasee = marionette_tg.conf.get("server.mysql_database")
+#	db = MySQLdb.connect(host='localhost', user=usr, passwd=passwdd, db=databasee)	
+#else:
+#	print 'error - database undefined'
 #webui for layerprox 
 
 lp = flask.Flask(__name__) 

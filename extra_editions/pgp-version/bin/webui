@@ -12,11 +12,11 @@ from base64 import b64decode
 import datetime
 import sys, os
 from functools import wraps
-from otw import * #justencrypt, justdecrypt, blakehmac
+from otw import justencrypt, justdecrypt, genhmac
 
 datab = marionette_tg.conf.get("server.database")
 dbdir = marionette_tg.conf.get("server.database_dir")
-home = marionette_tg.conf.get("crypt.gpgdir")
+home = marionette_tg.conf.get("crypt.serverhomedir")
 
 gpg = gnupg.GPG(homedir=home)# gpg home
 gpg.encoding = 'utf-8'
@@ -274,4 +274,4 @@ def gen_day():
 
 
 if __name__ == '__main__':
-	lp.run(debug=False,port=80, host="0.0.0.0", threaded=True) 
+	lp.run(debug=False,port=80, host="0.0.0.0") 
