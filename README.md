@@ -1,6 +1,12 @@
 # LayerProx
 A rebuild of marionette, encrypted proxy that simulates general webtraffic.
 
+#attention! this project is under dev at the moment that started 11/1-2017 we advice all to wait til its done, probelly done 15/1 - 2017
+
+
+##Openbsd dev? contact me at -> flipchan[at]riseup.net
+###short update 11/01-2017, i been working on a ring scheme as auth but putting that aside and working on a stable version with off the wire
+
 core idea of LayerProx project make the person that is intercepting our data for example a mitm belive that we are visiting 
 site "X" when we are on site "Y"
 
@@ -16,7 +22,7 @@ Stronger than a vpn, Smarter than a proxy.
 
 LayerProx believes in Privacy so it comes with a Warrant Canary
 
-**Provides strong end to end encryption with PGP + AES-CTR + HMACSHA256**
+**Provides strong end to end encryption with PGP + AES-CTR + BLAKE-HMAC**
 
 ##Whats is uniq with layerprox?
 a normal obfusciation system makes the data look like random http data. 
@@ -37,6 +43,8 @@ and also works with proxychains so you can proxy applications through it
 
 
 ##i recommend that you wait deploying this until version offthewire is stable (a day or two)
+
+layerprox changes your traffic so it looks like your doing something else 
 
 
 
