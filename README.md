@@ -35,7 +35,7 @@ By doing this we bypass deep package inspection systems(the data just looks like
 protects against deep package injection
 
 encryption: pgp + aes-ctr + hmac
-
+			Encrypt then HMAC yesyes
 each user has its uniq keys for the crypto with a expire date to help improve security
 
 Currently works on/with:
