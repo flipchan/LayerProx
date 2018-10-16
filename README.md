@@ -1,13 +1,18 @@
 # LayerProx
 A rebuild of marionette, encrypted proxy that simulates general webtraffic.
 
+# This project is not longer being developed due to real life things, 
+## For an updated version follow the great developers over at redjack 
+# Here https://github.com/redjack/marionette is the updated maintain program by redjack , i advise all to use that program instead of this one
+
+
 '''
 this is the dev version for other versions visit the folders
 ls versions/
 ls extraversions/
 '''
 
-##Openbsd dev? contact me at -> flipchan[at]riseup.net or layerproxdevelopment@tomuchmoney.club
+##Openbsd dev? contact me at -> flipchan[at]riseup.net or layerproxdevelopment[at]tomuchmoney.club
 ###short update 11/01-2017, i been working on a ring scheme as auth but putting that aside and working on a stable version with off the wire
 
 core idea of LayerProx project make the person that is intercepting our data for example a mitm belive that we are visiting 
