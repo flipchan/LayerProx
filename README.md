@@ -1,7 +1,10 @@
 # LayerProx
 A rebuild of marionette, encrypted proxy that simulates general webtraffic.
 
-# This project is not longer being developed due to real life things, 
+# This project is not longer being developed since years
+
+
+
 ## For an updated version follow the great developers over at redjack 
 # Here https://github.com/redjack/marionette is the updated maintain program by redjack , i advise all to use that program instead of this one
 
